@@ -37,7 +37,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -172,7 +172,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"speed\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  ",
           "refId": "A"
@@ -180,7 +180,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"gust\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Böe\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])",
@@ -189,7 +189,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"direction\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Richtung\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])",
@@ -202,7 +202,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -309,7 +309,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"min_wind_speed\" and r._field == \"value\"\n  )\n  |> map(fn: (r) => ({r with _value: if r._value > 100 then 0.0 else r._value * 3.6}))\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"device\", \"_measurement\"])\n  ",
@@ -318,7 +318,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"max_wind_speed\" and r._field == \"value\"\n  )\n  |> map(fn: (r) => ({r with _value: r._value * 3.6}))\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_measurement\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({\n    r with \n    Böe: if r.max_wind_speed > 100 then r.avg_wind_speed else r.max_wind_speed,\n  }))\n  |> drop(columns: [\"max_wind_speed\", \"min_wind_speed\", \"avg_wind_speed\"])\n  |> keep(columns: [\"_time\", \"Böe\"])",
@@ -327,7 +327,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind_direction\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Richtung\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"device\", \"_measurement\"])\n  ",
@@ -340,7 +340,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -435,7 +435,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"walensee\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"murg\" and\n    r._field == \"level\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Wasserstand\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\", \"_measurement\"])",
           "refId": "A"
@@ -443,7 +443,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"walensee\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"linth\" and\n    r._field == \"temperature\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Temperatur\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\", \"_measurement\"])\n  ",
@@ -456,7 +456,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -640,7 +640,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"luminance\"\n  )\n  ",
@@ -649,7 +649,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"pressure\"\n  )\n  ",
@@ -658,7 +658,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"temperature\"\n  )\n  ",
@@ -667,7 +667,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"humidity\"\n  )\n  ",
@@ -676,7 +676,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"rain\"\n  )\n  ",
@@ -702,7 +702,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {},
@@ -735,7 +735,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n     r[\"_field\"] == \"speed\" or \n     r[\"_field\"] == \"direction\"\n    )\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> rename(columns: {\"speed\": \"wind_speed\", \"direction\": \"wind_direction\"})",
           "refId": "A"
@@ -748,7 +748,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {},
@@ -781,7 +781,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n     r[\"_measurement\"] == \"min_wind_speed\" or \n     r[\"_measurement\"] == \"wind_direction\"\n    )\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_measurement\"], valueColumn: \"_value\")\n  |> rename(columns: {\"min_wind_speed\": \"wind_speed\", \"wind_direction\": \"wind_direction\"})\n  |> map(fn: (r) => ({r with \n    wind_speed: if r.wind_speed > 100 then 0.0 else r.wind_speed * 3.6}))\n\n",
           "refId": "A"
@@ -794,7 +794,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -902,7 +902,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"speed\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  \n  ",
           "refId": "A"
@@ -910,7 +910,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"gust\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Böhe\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  ",
@@ -923,7 +923,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -1013,7 +1013,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"direction\"\n  )\n  ",
           "refId": "A"
@@ -1025,7 +1025,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -1167,7 +1167,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"avg_wind_speed\" or r._measurement == \"min_wind_speed\" or r._measurement == \"max_wind_speed\"\n    )\n  |> map(fn: (r) => ({r with _value: r._value * 3.6}))\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_measurement\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({\n    r with \n    max: if r.max_wind_speed > 100 then if r.avg_wind_speed > 100 then -0.1 else r.avg_wind_speed else r.max_wind_speed,\n    min: if r.min_wind_speed > 100 then -0.1 else r.min_wind_speed,\n    avg: if r.avg_wind_speed > 100 then -0.1 else r.avg_wind_speed\n  }))\n  |> drop(columns: [\"max_wind_speed\", \"min_wind_speed\", \"avg_wind_speed\"])\n  |> keep(columns: [\"_time\", \"max\", \"min\", \"avg\"])",
@@ -1180,7 +1180,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -1259,7 +1259,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind_direction\"\n  )\n  ",
           "refId": "A"
@@ -1271,7 +1271,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -1355,7 +1355,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"luminance\"\n  )\n  ",
           "refId": "A"
@@ -1367,7 +1367,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -1450,7 +1450,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"humidity\"\n  )\n  ",
           "refId": "A"
@@ -1462,7 +1462,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -1545,7 +1545,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"temperature\"\n  )\n  ",
           "refId": "A"
@@ -1557,7 +1557,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -1637,7 +1637,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"pressure\"\n  )\n  ",
           "refId": "A"
@@ -1662,7 +1662,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -1759,7 +1759,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"walensee\")\n  |> range(start: -30d)\n  |> filter(fn: (r) =>\n    r._measurement == \"murg\" and\n    r._field == \"level\"\n  )\n  |> aggregateWindow(every: 1h, fn: mean)",
           "refId": "A"
@@ -1772,7 +1772,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "wind-alert"
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
       },
       "fieldConfig": {
         "defaults": {
@@ -1860,7 +1860,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "wind-alert"
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
           "query": "from(bucket: \"walensee\")\n  |> range(start: -30d)\n  |> filter(fn: (r) =>\n    r._measurement == \"linth\" and\n    r._field == \"temperature\"\n  )\n  |> aggregateWindow(every: 1h, fn: mean)",
           "refId": "A"
