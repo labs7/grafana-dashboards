@@ -1,1934 +1,1890 @@
 {
-    "__inputs": [
+  "annotations": {
+    "list": [
       {
-        "name": "DS_INFLUXDB",
-        "label": "wind-alert",
-        "description": "",
-        "type": "datasource",
-        "pluginId": "influxdb",
-        "pluginName": "InfluxDB"
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
       }
-    ],
-    "__elements": {},
-    "__requires": [
-      {
-        "type": "grafana",
-        "id": "grafana",
-        "name": "Grafana",
-        "version": "11.3.0"
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 2,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
       },
-      {
-        "type": "datasource",
-        "id": "influxdb",
-        "name": "InfluxDB",
-        "version": "1.0.0"
-      },
-      {
-        "type": "panel",
-        "id": "operato-windrose-panel",
-        "name": "Operato Windrose",
-        "version": "1.2.0"
-      },
-      {
-        "type": "panel",
-        "id": "stat",
-        "name": "Stat",
-        "version": ""
-      },
-      {
-        "type": "panel",
-        "id": "timeseries",
-        "name": "Time series",
-        "version": ""
-      }
-    ],
-    "annotations": {
-      "list": [
-        {
-          "builtIn": 1,
-          "datasource": {
-            "type": "grafana",
-            "uid": "-- Grafana --"
-          },
-          "enable": true,
-          "hide": true,
-          "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
-          "type": "dashboard"
-        }
-      ]
+      "id": 14,
+      "panels": [],
+      "title": "Aktuelle Daten",
+      "type": "row"
     },
-    "editable": true,
-    "fiscalYearStartMonth": 0,
-    "graphTooltip": 0,
-    "id": null,
-    "links": [],
-    "panels": [
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 0
-        },
-        "id": 14,
-        "panels": [],
-        "title": "Aktuelle Daten",
-        "type": "row"
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
       },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "decimals": 1,
-            "fieldMinMax": false,
-            "mappings": [],
-            "max": 60,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "red",
-                  "value": null
-                },
-                {
-                  "color": "orange",
-                  "value": 10
-                },
-                {
-                  "color": "green",
-                  "value": 14.5
-                }
-              ]
-            },
-            "unit": "velocitykmh"
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
           },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Richtung"
+          "decimals": 1,
+          "fieldMinMax": false,
+          "mappings": [],
+          "max": 60,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
               },
-              "properties": [
-                {
-                  "id": "unit",
-                  "value": "degree"
-                },
-                {
-                  "id": "thresholds",
-                  "value": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "red",
-                        "value": null
-                      },
-                      {
-                        "color": "green",
-                        "value": 225
-                      },
-                      {
-                        "color": "red",
-                        "value": 316
-                      }
-                    ]
-                  }
-                },
-                {
-                  "id": "decimals",
-                  "value": 0
-                },
-                {
-                  "id": "min",
-                  "value": 0
-                },
-                {
-                  "id": "max",
-                  "value": 360
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Böhe"
+              {
+                "color": "orange",
+                "value": 10
               },
-              "properties": [
-                {
-                  "id": "thresholds",
-                  "value": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "red",
-                        "value": null
-                      },
-                      {
-                        "color": "orange",
-                        "value": 15
-                      },
-                      {
-                        "color": "green",
-                        "value": 20
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 24,
-          "x": 0,
-          "y": 1
-        },
-        "id": 1,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "center",
-          "orientation": "vertical",
-          "percentChangeColorMode": "standard",
-          "reduceOptions": {
-            "calcs": [
-              "last"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "showPercentChange": false,
-          "textMode": "value_and_name",
-          "wideLayout": false
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"speed\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  ",
-            "refId": "A"
-          },
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"gust\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Böe\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])",
-            "refId": "B"
-          },
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"direction\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Richtung\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])",
-            "refId": "C"
-          }
-        ],
-        "title": "Wind Quinten",
-        "type": "stat"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "decimals": 1,
-            "mappings": [],
-            "max": 60,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "red",
-                  "value": null
-                },
-                {
-                  "color": "orange",
-                  "value": 10
-                },
-                {
-                  "color": "green",
-                  "value": 14.5
-                }
-              ]
-            },
-            "unit": "velocitykmh"
-          },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Richtung"
-              },
-              "properties": [
-                {
-                  "id": "unit",
-                  "value": "degree"
-                },
-                {
-                  "id": "thresholds",
-                  "value": {
-                    "mode": "absolute",
-                    "steps": [
-                      {
-                        "color": "red",
-                        "value": null
-                      },
-                      {
-                        "color": "green",
-                        "value": 225
-                      },
-                      {
-                        "color": "red",
-                        "value": 315
-                      }
-                    ]
-                  }
-                },
-                {
-                  "id": "decimals",
-                  "value": 0
-                },
-                {
-                  "id": "min",
-                  "value": 0
-                },
-                {
-                  "id": "max",
-                  "value": 360
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 24,
-          "x": 0,
-          "y": 5
-        },
-        "id": 3,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "center",
-          "orientation": "vertical",
-          "percentChangeColorMode": "standard",
-          "reduceOptions": {
-            "calcs": [
-              "last"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "showPercentChange": false,
-          "text": {},
-          "textMode": "value_and_name",
-          "wideLayout": false
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"min_wind_speed\" and r._field == \"value\"\n  )\n  |> map(fn: (r) => ({r with _value: if r._value > 100 then 0.0 else r._value * 3.6}))\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"device\", \"_measurement\"])\n  ",
-            "refId": "A"
-          },
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"max_wind_speed\" and r._field == \"value\"\n  )\n  |> map(fn: (r) => ({r with _value: r._value * 3.6}))\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_measurement\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({\n    r with \n    Böe: if r.max_wind_speed > 100 then r.avg_wind_speed else r.max_wind_speed,\n  }))\n  |> drop(columns: [\"max_wind_speed\", \"min_wind_speed\", \"avg_wind_speed\"])\n  |> keep(columns: [\"_time\", \"Böe\"])",
-            "refId": "C"
-          },
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind_direction\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Richtung\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"device\", \"_measurement\"])\n  ",
-            "refId": "B"
-          }
-        ],
-        "title": "Wind Walenstadt",
-        "type": "stat"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "decimals": 2,
-            "fieldMinMax": false,
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "green",
-                  "value": 14.5
-                },
-                {
-                  "color": "orange",
-                  "value": 419.8
-                },
-                {
-                  "color": "red",
-                  "value": 420
-                }
-              ]
-            },
-            "unit": "M.ü.M"
-          },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Temperatur"
-              },
-              "properties": [
-                {
-                  "id": "color",
-                  "value": {
-                    "mode": "continuous-BlYlRd"
-                  }
-                },
-                {
-                  "id": "decimals",
-                  "value": 1
-                },
-                {
-                  "id": "unit",
-                  "value": "celsius"
-                },
-                {
-                  "id": "min",
-                  "value": 4
-                },
-                {
-                  "id": "max",
-                  "value": 24
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 24,
-          "x": 0,
-          "y": 9
-        },
-        "id": 2,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "none",
-          "justifyMode": "center",
-          "orientation": "vertical",
-          "percentChangeColorMode": "standard",
-          "reduceOptions": {
-            "calcs": [
-              "last"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "showPercentChange": false,
-          "textMode": "value_and_name",
-          "wideLayout": false
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"walensee\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"murg\" and\n    r._field == \"level\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Wasserstand\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\", \"_measurement\"])",
-            "refId": "A"
-          },
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"walensee\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"linth\" and\n    r._field == \"temperature\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Temperatur\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\", \"_measurement\"])\n  ",
-            "refId": "B"
-          }
-        ],
-        "title": "Walensee",
-        "type": "stat"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "super-light-yellow",
-              "mode": "fixed"
-            },
-            "decimals": 0,
-            "mappings": [],
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "red",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "lux"
-          },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "pressure value walenstadt-wind"
-              },
-              "properties": [
-                {
-                  "id": "unit",
-                  "value": "pressurehpa"
-                },
-                {
-                  "id": "displayName",
-                  "value": "Luftdruck"
-                },
-                {
-                  "id": "min",
-                  "value": 900
-                },
-                {
-                  "id": "max",
-                  "value": 1050
-                },
-                {
-                  "id": "color",
-                  "value": {
-                    "fixedColor": "text",
-                    "mode": "fixed"
-                  }
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "temperature value walenstadt-wind"
-              },
-              "properties": [
-                {
-                  "id": "unit",
-                  "value": "celsius"
-                },
-                {
-                  "id": "displayName",
-                  "value": "Temperatur"
-                },
-                {
-                  "id": "min",
-                  "value": -5
-                },
-                {
-                  "id": "max",
-                  "value": 35
-                },
-                {
-                  "id": "decimals",
-                  "value": 1
-                },
-                {
-                  "id": "color",
-                  "value": {
-                    "mode": "continuous-BlYlRd"
-                  }
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "humidity value walenstadt-wind"
-              },
-              "properties": [
-                {
-                  "id": "unit",
-                  "value": "percent"
-                },
-                {
-                  "id": "displayName",
-                  "value": "Luftfeuchtigkeit"
-                },
-                {
-                  "id": "min",
-                  "value": 0
-                },
-                {
-                  "id": "max",
-                  "value": 100
-                },
-                {
-                  "id": "color",
-                  "value": {
-                    "mode": "continuous-BlPu"
-                  }
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "luminance value walenstadt-wind"
-              },
-              "properties": [
-                {
-                  "id": "displayName",
-                  "value": "Licht"
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "rain value walenstadt-wind"
-              },
-              "properties": [
-                {
-                  "id": "unit",
-                  "value": "lengthmm"
-                },
-                {
-                  "id": "displayName",
-                  "value": "Regen"
-                },
-                {
-                  "id": "color",
-                  "value": {
-                    "fixedColor": "semi-dark-blue",
-                    "mode": "fixed"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 4,
-          "w": 24,
-          "x": 0,
-          "y": 13
-        },
-        "id": 4,
-        "options": {
-          "colorMode": "value",
-          "graphMode": "area",
-          "justifyMode": "center",
-          "orientation": "vertical",
-          "percentChangeColorMode": "standard",
-          "reduceOptions": {
-            "calcs": [
-              "last"
-            ],
-            "fields": "",
-            "values": false
-          },
-          "showPercentChange": false,
-          "textMode": "value_and_name",
-          "wideLayout": false
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"luminance\"\n  )\n  ",
-            "refId": "A"
-          },
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"pressure\"\n  )\n  ",
-            "refId": "B"
-          },
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"temperature\"\n  )\n  ",
-            "refId": "C"
-          },
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"humidity\"\n  )\n  ",
-            "refId": "D"
-          },
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"rain\"\n  )\n  ",
-            "refId": "E"
-          }
-        ],
-        "title": "Wetter Walenstadt",
-        "type": "stat"
-      },
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 17
-        },
-        "id": 15,
-        "panels": [],
-        "title": "Graphen",
-        "type": "row"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 18
-        },
-        "id": 8,
-        "options": {
-          "cardinalLabels": "ordinal",
-          "colorPalette": "default",
-          "doesLegendOverlay": false,
-          "legendAnchor": "center",
-          "legendPosition": "right",
-          "petalsPer90Deg": 8,
-          "showLegend": true,
-          "speedBucketsCount": 8,
-          "speedBucketsSize": 2,
-          "speedBucketsSizeAuto": true,
-          "tooltipDecimalPlaces": 1,
-          "windSpeedUnit": "kmh",
-          "windroseLabels": "compass"
-        },
-        "pluginVersion": "1.2.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n     r[\"_field\"] == \"speed\" or \n     r[\"_field\"] == \"direction\"\n    )\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> rename(columns: {\"speed\": \"wind_speed\", \"direction\": \"wind_direction\"})",
-            "refId": "A"
-          }
-        ],
-        "title": "Wind Quinten",
-        "transparent": true,
-        "type": "operato-windrose-panel"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 18
-        },
-        "id": 9,
-        "options": {
-          "cardinalLabels": "ordinal",
-          "colorPalette": "default",
-          "doesLegendOverlay": false,
-          "legendAnchor": "center",
-          "legendPosition": "right",
-          "petalsPer90Deg": 8,
-          "showLegend": true,
-          "speedBucketsCount": 8,
-          "speedBucketsSize": 2,
-          "speedBucketsSizeAuto": true,
-          "tooltipDecimalPlaces": 1,
-          "windSpeedUnit": "kmh",
-          "windroseLabels": "compass"
-        },
-        "pluginVersion": "1.2.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n     r[\"_measurement\"] == \"min_wind_speed\" or \n     r[\"_measurement\"] == \"wind_direction\"\n    )\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_measurement\"], valueColumn: \"_value\")\n  |> rename(columns: {\"min_wind_speed\": \"wind_speed\", \"wind_direction\": \"wind_direction\"})\n  |> map(fn: (r) => ({r with \n    wind_speed: if r.wind_speed > 100 then 0.0 else r.wind_speed * 3.6}))\n\n",
-            "refId": "A"
-          }
-        ],
-        "title": "Wind Walenstadt",
-        "transparent": true,
-        "type": "operato-windrose-panel"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "continuous-RdYlGr"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "axisSoftMax": 16,
-              "axisSoftMin": 8,
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "scheme",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "smooth",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 2,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "always",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
+              {
+                "color": "green",
+                "value": 14.5
               }
-            },
-            "fieldMinMax": false,
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "red",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "velocitykmh"
+            ]
           },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Böhe"
-              },
-              "properties": [
-                {
-                  "id": "custom.lineWidth",
-                  "value": 2
-                },
-                {
-                  "id": "custom.lineStyle",
-                  "value": {
-                    "dash": [
-                      0,
-                      10
-                    ],
-                    "fill": "dot"
-                  }
-                }
-              ]
-            }
-          ]
+          "unit": "velocitykmh"
         },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 26
-        },
-        "id": 13,
-        "interval": "1h",
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "hoverProximity": 200,
-            "mode": "multi",
-            "sort": "desc"
-          }
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
+        "overrides": [
           {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
+            "matcher": {
+              "id": "byName",
+              "options": "Richtung"
             },
-            "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"speed\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  \n  ",
-            "refId": "A"
-          },
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"gust\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Böhe\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  ",
-            "refId": "B"
-          }
-        ],
-        "title": "Geschwindigkeit Quinten",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "yellow",
-              "mode": "thresholds"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "scheme",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
+            "properties": [
+              {
+                "id": "unit",
+                "value": "degree"
               },
-              "insertNulls": false,
-              "lineInterpolation": "smooth",
-              "lineWidth": 2,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 225
+                    },
+                    {
+                      "color": "red",
+                      "value": 316
+                    }
+                  ]
+                }
               },
-              "showPoints": "always",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
+              {
+                "id": "decimals",
+                "value": 0
               },
-              "thresholdsStyle": {
-                "mode": "dashed+area"
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 360
               }
-            },
-            "displayName": "Richtung",
-            "mappings": [],
-            "max": 360,
-            "min": 0,
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "red",
-                  "value": null
-                },
-                {
-                  "color": "green",
-                  "value": 225
-                },
-                {
-                  "color": "red",
-                  "value": 316
-                }
-              ]
-            },
-            "unit": "degree"
+            ]
           },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 26
-        },
-        "id": 16,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "hoverProximity": 200,
-            "mode": "multi",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
           {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
+            "matcher": {
+              "id": "byName",
+              "options": "Böhe"
             },
-            "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"direction\"\n  )\n  ",
-            "refId": "A"
-          }
-        ],
-        "title": "Richtung Quinten",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "continuous-RdYlGr"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "axisSoftMax": 13,
-              "axisSoftMin": 0,
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 20,
-              "gradientMode": "scheme",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "smooth",
-              "lineWidth": 2,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "never",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "orange",
+                      "value": 15
+                    },
+                    {
+                      "color": "green",
+                      "value": 20
+                    }
+                  ]
+                }
               }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "velocitykmh"
-          },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "max"
-              },
-              "properties": [
-                {
-                  "id": "color",
-                  "value": {
-                    "fixedColor": "super-light-yellow",
-                    "mode": "continuous-RdYlGr",
-                    "seriesBy": "last"
-                  }
-                },
-                {
-                  "id": "custom.lineWidth",
-                  "value": 1.5
-                },
-                {
-                  "id": "custom.lineStyle",
-                  "value": {
-                    "dash": [
-                      0,
-                      10
-                    ],
-                    "fill": "dot"
-                  }
-                },
-                {
-                  "id": "custom.fillOpacity",
-                  "value": 0
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "avg"
-              },
-              "properties": [
-                {
-                  "id": "color",
-                  "value": {
-                    "fixedColor": "super-light-orange",
-                    "mode": "continuous-RdYlGr"
-                  }
-                },
-                {
-                  "id": "custom.lineWidth",
-                  "value": 1
-                },
-                {
-                  "id": "custom.fillOpacity",
-                  "value": 0
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 18,
-          "x": 0,
-          "y": 34
-        },
-        "id": 17,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "hoverProximity": 200,
-            "mode": "multi",
-            "sort": "desc"
+            ]
           }
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "hide": false,
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"avg_wind_speed\" or r._measurement == \"min_wind_speed\" or r._measurement == \"max_wind_speed\"\n    )\n  |> map(fn: (r) => ({r with _value: r._value * 3.6}))\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_measurement\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({\n    r with \n    max: if r.max_wind_speed > 100 then if r.avg_wind_speed > 100 then -0.1 else r.avg_wind_speed else r.max_wind_speed,\n    min: if r.min_wind_speed > 100 then -0.1 else r.min_wind_speed,\n    avg: if r.avg_wind_speed > 100 then -0.1 else r.avg_wind_speed\n  }))\n  |> drop(columns: [\"max_wind_speed\", \"min_wind_speed\", \"avg_wind_speed\"])\n  |> keep(columns: [\"_time\", \"max\", \"min\", \"avg\"])",
-            "refId": "A"
-          }
-        ],
-        "title": "Geschwindigkeit Walenstadt",
-        "type": "timeseries"
+        ]
       },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "purple",
-              "mode": "fixed"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "axisSoftMax": 360,
-              "axisSoftMin": -4,
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "smooth",
-              "lineWidth": 2,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "never",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "purple",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 6,
-          "x": 18,
-          "y": 34
-        },
-        "id": 18,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind_direction\"\n  )\n  ",
-            "refId": "A"
-          }
-        ],
-        "title": "Richtung Walenstadt",
-        "type": "timeseries"
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 1
       },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "yellow",
-              "mode": "fixed"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "axisSoftMax": 3000,
-              "axisSoftMin": 0,
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "scheme",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 2,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "never",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "lux"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 6,
-          "x": 0,
-          "y": 42
-        },
-        "id": 19,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"luminance\"\n  )\n  ",
-            "refId": "A"
-          }
-        ],
-        "title": "Helligkeit",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "continuous-YlBl"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "axisSoftMax": 100,
-              "axisSoftMin": -8,
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "scheme",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 2,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "auto",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "humidity"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 6,
-          "x": 6,
-          "y": 42
-        },
-        "id": 20,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"humidity\"\n  )\n  ",
-            "refId": "A"
-          }
-        ],
-        "title": "Humidity",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "continuous-BlYlRd",
-              "seriesBy": "last"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "axisSoftMax": 35,
-              "axisSoftMin": -5,
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "scheme",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 2,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "never",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 6,
-          "x": 12,
-          "y": 42
-        },
-        "id": 21,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
-          },
-          "timezone": [
-            "browser"
+      "id": 1,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
           ],
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
+          "fields": "",
+          "values": false
         },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"temperature\"\n  )\n  ",
-            "refId": "A"
-          }
-        ],
-        "title": "Temperatur",
-        "type": "timeseries"
+        "showPercentChange": false,
+        "textMode": "value_and_name",
+        "wideLayout": false
       },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "continuous-BlPu"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "axisSoftMax": 990,
-              "axisSoftMin": 940,
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "none",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "linear",
-              "lineWidth": 2,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "never",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "off"
-              }
-            },
-            "fieldMinMax": false,
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "pressurehpa"
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
           },
-          "overrides": []
+          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"speed\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  ",
+          "refId": "A"
         },
-        "gridPos": {
-          "h": 8,
-          "w": 6,
-          "x": 18,
-          "y": 42
-        },
-        "id": 22,
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": true
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
           },
-          "tooltip": {
-            "mode": "single",
-            "sort": "none"
-          }
+          "hide": false,
+          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"gust\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Böe\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])",
+          "refId": "B"
         },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"pressure\"\n  )\n  ",
-            "refId": "A"
-          }
-        ],
-        "title": "Pressure",
-        "type": "timeseries"
-      },
-      {
-        "collapsed": false,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 50
-        },
-        "id": 12,
-        "panels": [],
-        "title": "Statistik",
-        "type": "row"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "semi-dark-blue",
-              "mode": "fixed",
-              "seriesBy": "min"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "axisSoftMax": 421,
-              "axisSoftMin": 418,
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 50,
-              "gradientMode": "opacity",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "smooth",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 2,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "never",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "dashed"
-              }
-            },
-            "decimals": 2,
-            "displayName": "Wasserstand",
-            "fieldMinMax": false,
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "#EAB839",
-                  "value": 419.5
-                },
-                {
-                  "color": "red",
-                  "value": 420
-                }
-              ]
-            },
-            "unit": "M.ü.M"
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
           },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 51
-        },
-        "hideTimeOverride": false,
-        "id": 10,
-        "interval": "2h",
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "desc"
-          }
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"walensee\")\n  |> range(start: -30d)\n  |> filter(fn: (r) =>\n    r._measurement == \"murg\" and\n    r._field == \"level\"\n  )\n  |> aggregateWindow(every: 1h, fn: mean)",
-            "refId": "A"
-          }
-        ],
-        "timeFrom": "now-30d",
-        "title": "Wasserstand",
-        "type": "timeseries"
-      },
-      {
-        "datasource": {
-          "type": "influxdb",
-          "uid": "${DS_INFLUXDB}"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "fixedColor": "semi-dark-blue",
-              "mode": "continuous-BlYlRd",
-              "seriesBy": "min"
-            },
-            "custom": {
-              "axisBorderShow": false,
-              "axisCenteredZero": false,
-              "axisColorMode": "text",
-              "axisLabel": "",
-              "axisPlacement": "auto",
-              "axisSoftMax": 23,
-              "axisSoftMin": 4,
-              "barAlignment": 0,
-              "barWidthFactor": 0.6,
-              "drawStyle": "line",
-              "fillOpacity": 0,
-              "gradientMode": "scheme",
-              "hideFrom": {
-                "legend": false,
-                "tooltip": false,
-                "viz": false
-              },
-              "insertNulls": false,
-              "lineInterpolation": "smooth",
-              "lineStyle": {
-                "fill": "solid"
-              },
-              "lineWidth": 2,
-              "pointSize": 5,
-              "scaleDistribution": {
-                "type": "linear"
-              },
-              "showPoints": "never",
-              "spanNulls": false,
-              "stacking": {
-                "group": "A",
-                "mode": "none"
-              },
-              "thresholdsStyle": {
-                "mode": "dashed"
-              }
-            },
-            "decimals": 2,
-            "displayName": "Wassertemperatur",
-            "fieldMinMax": false,
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "celsius"
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 51
-        },
-        "id": 11,
-        "interval": "30m",
-        "options": {
-          "legend": {
-            "calcs": [],
-            "displayMode": "list",
-            "placement": "bottom",
-            "showLegend": false
-          },
-          "tooltip": {
-            "mode": "multi",
-            "sort": "desc"
-          }
-        },
-        "pluginVersion": "11.3.0",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "${DS_INFLUXDB}"
-            },
-            "query": "from(bucket: \"walensee\")\n  |> range(start: -30d)\n  |> filter(fn: (r) =>\n    r._measurement == \"linth\" and\n    r._field == \"temperature\"\n  )\n  |> aggregateWindow(every: 1h, fn: mean)",
-            "refId": "A"
-          }
-        ],
-        "timeFrom": "now-30d",
-        "title": "Wassertemperatur",
-        "type": "timeseries"
-      }
-    ],
-    "schemaVersion": 40,
-    "tags": [],
-    "templating": {
-      "list": []
+          "hide": false,
+          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"direction\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Richtung\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])",
+          "refId": "C"
+        }
+      ],
+      "title": "Wind Quinten",
+      "type": "stat"
     },
-    "time": {
-      "from": "now-6h",
-      "to": "now"
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [],
+          "max": 60,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 14.5
+              }
+            ]
+          },
+          "unit": "velocitykmh"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Richtung"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "degree"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "green",
+                      "value": 225
+                    },
+                    {
+                      "color": "red",
+                      "value": 315
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 360
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 3,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"min_wind_speed\" and r._field == \"value\"\n  )\n  |> map(fn: (r) => ({r with _value: if r._value > 100 then 0.0 else r._value * 3.6}))\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"device\", \"_measurement\"])\n  ",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"max_wind_speed\" and r._field == \"value\"\n  )\n  |> map(fn: (r) => ({r with _value: r._value * 3.6}))\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_measurement\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({\n    r with \n    Böe: if r.max_wind_speed > 100 then r.avg_wind_speed else r.max_wind_speed,\n  }))\n  |> drop(columns: [\"max_wind_speed\", \"min_wind_speed\", \"avg_wind_speed\"])\n  |> keep(columns: [\"_time\", \"Böe\"])",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind_direction\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Richtung\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"device\", \"_measurement\"])\n  ",
+          "refId": "B"
+        }
+      ],
+      "title": "Wind Walenstadt",
+      "type": "stat"
     },
-    "timepicker": {},
-    "timezone": "browser",
-    "title": "Walensee",
-    "uid": "eek0kpuvwm22od",
-    "version": 11,
-    "weekStart": ""
-  }
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 14.5
+              },
+              {
+                "color": "orange",
+                "value": 419.8
+              },
+              {
+                "color": "red",
+                "value": 420
+              }
+            ]
+          },
+          "unit": "M.ü.M"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Temperatur"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-BlYlRd"
+                }
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "unit",
+                "value": "celsius"
+              },
+              {
+                "id": "min",
+                "value": 4
+              },
+              {
+                "id": "max",
+                "value": 24
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"walensee\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"murg\" and\n    r._field == \"level\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Wasserstand\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\", \"_measurement\"])",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walensee\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"linth\" and\n    r._field == \"temperature\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Temperatur\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\", \"_measurement\"])\n  ",
+          "refId": "B"
+        }
+      ],
+      "title": "Walensee",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "super-light-yellow",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              }
+            ]
+          },
+          "unit": "lux"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pressure value walenstadt-wind"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "pressurehpa"
+              },
+              {
+                "id": "displayName",
+                "value": "Luftdruck"
+              },
+              {
+                "id": "min",
+                "value": 900
+              },
+              {
+                "id": "max",
+                "value": 1050
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "text",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "temperature value walenstadt-wind"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "celsius"
+              },
+              {
+                "id": "displayName",
+                "value": "Temperatur"
+              },
+              {
+                "id": "min",
+                "value": -5
+              },
+              {
+                "id": "max",
+                "value": 35
+              },
+              {
+                "id": "decimals",
+                "value": 1
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-BlYlRd"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "humidity value walenstadt-wind"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "displayName",
+                "value": "Luftfeuchtigkeit"
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "continuous-BlPu"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "luminance value walenstadt-wind"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Licht"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "rain value walenstadt-wind"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "lengthmm"
+              },
+              {
+                "id": "displayName",
+                "value": "Regen"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "value_and_name",
+        "wideLayout": false
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"luminance\"\n  )\n  ",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"pressure\"\n  )\n  ",
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"temperature\"\n  )\n  ",
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"humidity\"\n  )\n  ",
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"rain\"\n  )\n  ",
+          "refId": "E"
+        }
+      ],
+      "title": "Wetter Walenstadt",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 15,
+      "panels": [],
+      "title": "Graphen",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "id": 8,
+      "options": {
+        "cardinalLabels": "ordinal",
+        "colorPalette": "default",
+        "doesLegendOverlay": false,
+        "legendAnchor": "center",
+        "legendPosition": "right",
+        "petalsPer90Deg": 8,
+        "showLegend": true,
+        "speedBucketsCount": 8,
+        "speedBucketsSize": 2,
+        "speedBucketsSizeAuto": true,
+        "tooltipDecimalPlaces": 1,
+        "windSpeedUnit": "kmh",
+        "windroseLabels": "compass"
+      },
+      "pluginVersion": "1.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n     r[\"_field\"] == \"speed\" or \n     r[\"_field\"] == \"direction\"\n    )\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> rename(columns: {\"speed\": \"wind_speed\", \"direction\": \"wind_direction\"})",
+          "refId": "A"
+        }
+      ],
+      "title": "Wind Quinten",
+      "transparent": true,
+      "type": "operato-windrose-panel"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 9,
+      "options": {
+        "cardinalLabels": "ordinal",
+        "colorPalette": "default",
+        "doesLegendOverlay": false,
+        "legendAnchor": "center",
+        "legendPosition": "right",
+        "petalsPer90Deg": 8,
+        "showLegend": true,
+        "speedBucketsCount": 8,
+        "speedBucketsSize": 2,
+        "speedBucketsSizeAuto": true,
+        "tooltipDecimalPlaces": 1,
+        "windSpeedUnit": "kmh",
+        "windroseLabels": "compass"
+      },
+      "pluginVersion": "1.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n     r[\"_measurement\"] == \"min_wind_speed\" or \n     r[\"_measurement\"] == \"wind_direction\"\n    )\n  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_measurement\"], valueColumn: \"_value\")\n  |> rename(columns: {\"min_wind_speed\": \"wind_speed\", \"wind_direction\": \"wind_direction\"})\n  |> map(fn: (r) => ({r with \n    wind_speed: if r.wind_speed > 100 then 0.0 else r.wind_speed * 3.6}))\n\n",
+          "refId": "A"
+        }
+      ],
+      "title": "Wind Walenstadt",
+      "transparent": true,
+      "type": "operato-windrose-panel"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 16,
+            "axisSoftMin": 8,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              }
+            ]
+          },
+          "unit": "velocitykmh"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Böhe"
+            },
+            "properties": [
+              {
+                "id": "custom.lineWidth",
+                "value": 2
+              },
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    0,
+                    10
+                  ],
+                  "fill": "dot"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 26
+      },
+      "id": 13,
+      "interval": "1h",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hoverProximity": 200,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"speed\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  \n  ",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"gust\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Böhe\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  ",
+          "refId": "B"
+        }
+      ],
+      "title": "Geschwindigkeit Quinten",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed+area"
+            }
+          },
+          "displayName": "Richtung",
+          "mappings": [],
+          "max": 360,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red"
+              },
+              {
+                "color": "green",
+                "value": 225
+              },
+              {
+                "color": "red",
+                "value": 316
+              }
+            ]
+          },
+          "unit": "degree"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 26
+      },
+      "id": 16,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hoverProximity": 200,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"direction\"\n  )\n  ",
+          "refId": "A"
+        }
+      ],
+      "title": "Richtung Quinten",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 13,
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "velocitykmh"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "max"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-yellow",
+                  "mode": "continuous-RdYlGr",
+                  "seriesBy": "last"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1.5
+              },
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    0,
+                    10
+                  ],
+                  "fill": "dot"
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-orange",
+                  "mode": "continuous-RdYlGr"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 18,
+        "x": 0,
+        "y": 34
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hoverProximity": 200,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"avg_wind_speed\" or r._measurement == \"min_wind_speed\" or r._measurement == \"max_wind_speed\"\n    )\n  |> map(fn: (r) => ({r with _value: r._value * 3.6}))\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_measurement\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({\n    r with \n    max: if r.max_wind_speed > 100 then if r.avg_wind_speed > 100 then -0.1 else r.avg_wind_speed else r.max_wind_speed,\n    min: if r.min_wind_speed > 100 then -0.1 else r.min_wind_speed,\n    avg: if r.avg_wind_speed > 100 then -0.1 else r.avg_wind_speed\n  }))\n  |> drop(columns: [\"max_wind_speed\", \"min_wind_speed\", \"avg_wind_speed\"])\n  |> keep(columns: [\"_time\", \"max\", \"min\", \"avg\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "Geschwindigkeit Walenstadt",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "purple",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 360,
+            "axisSoftMin": -4,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 34
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind_direction\"\n  )\n  ",
+          "refId": "A"
+        }
+      ],
+      "title": "Richtung Walenstadt",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 3000,
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "lux"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 42
+      },
+      "id": 19,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"luminance\"\n  )\n  ",
+          "refId": "A"
+        }
+      ],
+      "title": "Helligkeit",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-YlBl"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 100,
+            "axisSoftMin": -8,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "humidity"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 6,
+        "y": 42
+      },
+      "id": 20,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"humidity\"\n  )\n  ",
+          "refId": "A"
+        }
+      ],
+      "title": "Humidity",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd",
+            "seriesBy": "last"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 35,
+            "axisSoftMin": -5,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 42
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "timezone": [
+          "browser"
+        ],
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"temperature\"\n  )\n  ",
+          "refId": "A"
+        }
+      ],
+      "title": "Temperatur",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlPu"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 990,
+            "axisSoftMin": 940,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "pressurehpa"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 42
+      },
+      "id": 22,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"pressure\"\n  )\n  ",
+          "refId": "A"
+        }
+      ],
+      "title": "Pressure",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 50
+      },
+      "id": 12,
+      "panels": [],
+      "title": "Statistik",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-blue",
+            "mode": "fixed",
+            "seriesBy": "min"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 421,
+            "axisSoftMin": 418,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 2,
+          "displayName": "Wasserstand",
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "#EAB839",
+                "value": 419.5
+              },
+              {
+                "color": "red",
+                "value": 420
+              }
+            ]
+          },
+          "unit": "M.ü.M"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 51
+      },
+      "hideTimeOverride": false,
+      "id": 10,
+      "interval": "2h",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"walensee\")\n  |> range(start: -30d)\n  |> filter(fn: (r) =>\n    r._measurement == \"murg\" and\n    r._field == \"level\"\n  )\n  |> aggregateWindow(every: 1h, fn: mean)",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "now-30d",
+      "title": "Wasserstand",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "wind-alert"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-blue",
+            "mode": "continuous-BlYlRd",
+            "seriesBy": "min"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 23,
+            "axisSoftMin": 4,
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "decimals": 2,
+          "displayName": "Wassertemperatur",
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          },
+          "unit": "celsius"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 51
+      },
+      "id": 11,
+      "interval": "30m",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "11.3.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "wind-alert"
+          },
+          "query": "from(bucket: \"walensee\")\n  |> range(start: -30d)\n  |> filter(fn: (r) =>\n    r._measurement == \"linth\" and\n    r._field == \"temperature\"\n  )\n  |> aggregateWindow(every: 1h, fn: mean)",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "now-30d",
+      "title": "Wassertemperatur",
+      "type": "timeseries"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Walensee",
+  "uid": "eek0kpuvwm22od",
+  "version": 1,
+  "weekStart": ""
+}
