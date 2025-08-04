@@ -18,7 +18,7 @@
   "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 5,
+  "id": 9,
   "links": [],
   "panels": [
     {
@@ -611,9 +611,8 @@
             "mode": "thresholds"
           },
           "decimals": 1,
-          "fieldMinMax": false,
           "mappings": [],
-          "max": 60,
+          "max": 40,
           "min": 0,
           "thresholds": {
             "mode": "absolute",
@@ -638,51 +637,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Richtung"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "degree"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red",
-                      "value": null
-                    },
-                    {
-                      "color": "green",
-                      "value": 225
-                    },
-                    {
-                      "color": "red",
-                      "value": 316
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "decimals",
-                "value": 0
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "max",
-                "value": 360
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Böhe"
+              "options": "Böe"
             },
             "properties": [
               {
@@ -706,99 +661,7 @@
                 }
               }
             ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 24,
-        "x": 0,
-        "y": 9
-      },
-      "id": 1,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "vertical",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "value_and_name",
-        "wideLayout": false
-      },
-      "pluginVersion": "11.3.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
           },
-          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"speed\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  ",
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
-          },
-          "hide": false,
-          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"gust\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Böe\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])",
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
-          },
-          "hide": false,
-          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"direction\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Richtung\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])",
-          "refId": "C"
-        }
-      ],
-      "title": "Wind Quinten",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 1,
-          "mappings": [],
-          "max": 60,
-          "min": 0,
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 10
-              },
-              {
-                "color": "green",
-                "value": 14.5
-              }
-            ]
-          },
-          "unit": "velocitykmh"
-        },
-        "overrides": [
           {
             "matcher": {
               "id": "byName",
@@ -806,78 +669,469 @@
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "degree"
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red",
-                      "value": null
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-down.svg",
+                        "index": 0,
+                        "text": "N"
+                      },
+                      "to": 22.5
                     },
-                    {
-                      "color": "green",
-                      "value": 225
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 22.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-down-left.svg",
+                        "index": 1,
+                        "text": "NO"
+                      },
+                      "to": 67.5
                     },
-                    {
-                      "color": "red",
-                      "value": 315
-                    }
-                  ]
-                }
-              },
-              {
-                "id": "decimals",
-                "value": 0
-              },
-              {
-                "id": "min",
-                "value": 0
-              },
-              {
-                "id": "max",
-                "value": 360
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 67.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-left.svg",
+                        "index": 2,
+                        "text": "O"
+                      },
+                      "to": 112.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 112.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-up-left.svg",
+                        "index": 3,
+                        "text": "SO"
+                      },
+                      "to": 157.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 157.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-up.svg",
+                        "index": 4,
+                        "text": "S"
+                      },
+                      "to": 202.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 202.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-up-right.svg",
+                        "index": 5,
+                        "text": "SW"
+                      },
+                      "to": 247.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 247.6,
+                      "result": {
+                        "color": "green",
+                        "icon": "img/icons/unicons/arrow-right.svg",
+                        "index": 6,
+                        "text": "W"
+                      },
+                      "to": 292.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 292.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-down-right.svg",
+                        "index": 7,
+                        "text": "NW"
+                      },
+                      "to": 337.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 337.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-down.svg",
+                        "index": 8,
+                        "text": "N"
+                      },
+                      "to": 359.9
+                    },
+                    "type": "range"
+                  }
+                ]
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 4,
-        "w": 24,
-        "x": 0,
-        "y": 13
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 1
       },
-      "id": 3,
+      "id": 27,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
-        "orientation": "vertical",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "last"
+        "infinitePan": false,
+        "inlineEditing": true,
+        "panZoom": false,
+        "root": {
+          "background": {
+            "color": {
+              "fixed": "transparent"
+            },
+            "image": {
+              "field": "Geschwindigkeit",
+              "fixed": "",
+              "mode": "fixed"
+            },
+            "size": "fill"
+          },
+          "border": {
+            "color": {
+              "fixed": "dark-green"
+            }
+          },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          },
+          "elements": [
+            {
+              "background": {
+                "color": {
+                  "field": "Geschwindigkeit",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "Geschwindigkeit",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Geschwindigkeit",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 45,
+                "left": 197,
+                "rotation": 0,
+                "top": 183,
+                "width": 134
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "image": {
+                  "mode": "fixed"
+                },
+                "size": "fill"
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "rpm": {
+                  "field": "value",
+                  "fixed": 30,
+                  "mode": "mod"
+                }
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Geschwindigkeit Windrad",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 216,
+                "left": 12,
+                "rotation": 0,
+                "top": 6,
+                "width": 156
+              },
+              "type": "windTurbine"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "Böe",
+                  "fixed": "#D9D9D9"
+                },
+                "image": {
+                  "fixed": ""
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 20,
+                "text": {
+                  "field": "Böe",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Böe",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 45,
+                "left": 197,
+                "rotation": 0,
+                "top": 122,
+                "width": 134
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                },
+                "image": {
+                  "field": "Richtung",
+                  "fixed": "",
+                  "mode": "fixed"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "fill": {
+                  "field": "Richtung",
+                  "fixed": "#D9D9D9"
+                },
+                "path": {
+                  "field": "Richtung",
+                  "fixed": "img/icons/unicons/question-circle.svg",
+                  "mode": "field"
+                }
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Richtung",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 90,
+                "left": 237,
+                "rotation": 0,
+                "top": 24,
+                "width": 94
+              },
+              "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "field": "Richtung",
+                  "fixed": "#000000"
+                },
+                "size": 30,
+                "text": {
+                  "field": "Richtung",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Richtung Text",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 71,
+                "left": 197,
+                "rotation": 0,
+                "top": 34,
+                "width": 67
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 9,
+                "text": {
+                  "fixed": "Böe"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Böe Text",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 14,
+                "left": 197,
+                "rotation": 0,
+                "top": 107,
+                "width": 33
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 9,
+                "text": {
+                  "fixed": "Wind"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 7",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 14,
+                "left": 197,
+                "rotation": 0,
+                "top": 169,
+                "width": 33
+              },
+              "type": "text"
+            }
           ],
-          "fields": "",
-          "values": false
+          "name": "Element 1753823583376",
+          "oneClickMode": "off",
+          "placement": {
+            "height": 100,
+            "left": 0,
+            "rotation": 0,
+            "top": 0,
+            "width": 100
+          },
+          "type": "frame"
         },
-        "showPercentChange": false,
-        "text": {},
-        "textMode": "value_and_name",
-        "wideLayout": false
+        "showAdvancedTypes": true
       },
       "pluginVersion": "11.3.0",
       "targets": [
         {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
-          },
-          "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"min_wind_speed\" and r._field == \"value\"\n  )\n  |> map(fn: (r) => ({r with _value: if r._value > 100 then 0.0 else r._value * 3.6}))\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Geschwindigkeit\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"device\", \"_measurement\"])\n  ",
           "refId": "A"
         },
@@ -888,7 +1142,7 @@
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"max_wind_speed\" and r._field == \"value\"\n  )\n  |> map(fn: (r) => ({r with _value: r._value * 3.6}))\n  |> pivot(rowKey: [\"_time\"], columnKey: [\"_measurement\"], valueColumn: \"_value\")\n  |> map(fn: (r) => ({\n    r with \n    Böe: if r.max_wind_speed > 100 then r.avg_wind_speed else r.max_wind_speed,\n  }))\n  |> drop(columns: [\"max_wind_speed\", \"min_wind_speed\", \"avg_wind_speed\"])\n  |> keep(columns: [\"_time\", \"Böe\"])",
-          "refId": "C"
+          "refId": "B"
         },
         {
           "datasource": {
@@ -897,11 +1151,20 @@
           },
           "hide": false,
           "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind_direction\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Richtung\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"device\", \"_measurement\"])\n  ",
-          "refId": "B"
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
+          },
+          "hide": false,
+          "query": "from(bucket: \"walenstadt-wind\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"min_wind_speed\" and r._field == \"value\"\n  )\n  |> map(fn: (r) => ({r with _value: if r._value > 100 then 0.0 else r._value * 3.6 * 2.0}))\n  ",
+          "refId": "D"
         }
       ],
-      "title": "Wind Walenstadt",
-      "type": "stat"
+      "title": "Walenstadt",
+      "type": "canvas"
     },
     {
       "datasource": {
@@ -976,7 +1239,7 @@
         "h": 4,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 9
       },
       "id": 2,
       "options": {
@@ -1181,7 +1444,7 @@
         "h": 4,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 13
       },
       "id": 4,
       "options": {
@@ -1258,7 +1521,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 17
       },
       "id": 15,
       "panels": [],
@@ -1278,7 +1541,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 18
       },
       "id": 8,
       "options": {
@@ -1324,7 +1587,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 26
+        "y": 18
       },
       "id": 9,
       "options": {
@@ -1447,7 +1710,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 34
+        "y": 26
       },
       "id": 13,
       "interval": "1h",
@@ -1560,7 +1823,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 34
+        "y": 26
       },
       "id": 16,
       "options": {
@@ -1640,7 +1903,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1714,7 +1978,7 @@
         "h": 8,
         "w": 18,
         "x": 0,
-        "y": 42
+        "y": 34
       },
       "id": 17,
       "options": {
@@ -1796,7 +2060,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           }
@@ -1807,7 +2072,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 42
+        "y": 34
       },
       "id": 18,
       "options": {
@@ -1903,7 +2168,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 50
+        "y": 42
       },
       "id": 19,
       "options": {
@@ -1998,7 +2263,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 50
+        "y": 42
       },
       "id": 20,
       "options": {
@@ -2090,7 +2355,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 50
+        "y": 42
       },
       "id": 21,
       "options": {
@@ -2185,7 +2450,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 50
+        "y": 42
       },
       "id": 22,
       "options": {
@@ -2220,7 +2485,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 50
       },
       "id": 12,
       "panels": [],
@@ -2305,7 +2570,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 59
+        "y": 51
       },
       "hideTimeOverride": false,
       "id": 10,
@@ -2407,7 +2672,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 59
+        "y": 51
       },
       "id": 11,
       "interval": "30m",
@@ -2516,7 +2781,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 67
+        "y": 59
       },
       "hideTimeOverride": false,
       "id": 23,
@@ -2618,7 +2883,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 67
+        "y": 59
       },
       "id": 24,
       "interval": "12h",
@@ -2673,6 +2938,6 @@
   "timezone": "browser",
   "title": "Walensee",
   "uid": "eek0kpuvwm22x",
-  "version": 19,
+  "version": 20,
   "weekStart": ""
 }
