@@ -45,116 +45,7 @@
             "mode": "thresholds"
           },
           "decimals": 1,
-          "mappings": [
-            {
-              "options": {
-                "from": 247.6,
-                "result": {
-                  "color": "green",
-                  "icon": "img/icons/unicons/arrow-right.svg",
-                  "index": 0
-                },
-                "to": 292.5
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 0,
-                "result": {
-                  "color": "red",
-                  "icon": "img/icons/unicons/arrow-down.svg",
-                  "index": 1
-                },
-                "to": 22.5
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 67.6,
-                "result": {
-                  "color": "red",
-                  "icon": "img/icons/unicons/arrow-left.svg",
-                  "index": 2
-                },
-                "to": 112.5
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 157.6,
-                "result": {
-                  "color": "red",
-                  "icon": "img/icons/unicons/arrow-up.svg",
-                  "index": 3
-                },
-                "to": 202.5
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 337.6,
-                "result": {
-                  "color": "red",
-                  "icon": "img/icons/unicons/arrow-down.svg",
-                  "index": 4
-                },
-                "to": 359.9
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 22.6,
-                "result": {
-                  "color": "red",
-                  "icon": "img/icons/unicons/arrow-down-left.svg",
-                  "index": 5
-                },
-                "to": 67.5
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 112.6,
-                "result": {
-                  "color": "red",
-                  "icon": "img/icons/unicons/arrow-up-left.svg",
-                  "index": 6
-                },
-                "to": 157.5
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 202.6,
-                "result": {
-                  "color": "red",
-                  "icon": "img/icons/unicons/arrow-up-right.svg",
-                  "index": 7
-                },
-                "to": 247.5
-              },
-              "type": "range"
-            },
-            {
-              "options": {
-                "from": 292.6,
-                "result": {
-                  "color": "red",
-                  "icon": "img/icons/unicons/arrow-down-right.svg",
-                  "index": 8
-                },
-                "to": 337.5
-              },
-              "type": "range"
-            }
-          ],
+          "mappings": [],
           "max": 40,
           "min": 0,
           "thresholds": {
@@ -204,12 +95,142 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Richtung"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "from": 0,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-down.svg",
+                        "index": 0,
+                        "text": "N"
+                      },
+                      "to": 22.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 22.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-down-left.svg",
+                        "index": 1,
+                        "text": "NO"
+                      },
+                      "to": 67.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 67.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-left.svg",
+                        "index": 2,
+                        "text": "O"
+                      },
+                      "to": 112.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 112.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-up-left.svg",
+                        "index": 3,
+                        "text": "SO"
+                      },
+                      "to": 157.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 157.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-up.svg",
+                        "index": 4,
+                        "text": "S"
+                      },
+                      "to": 202.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 202.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-up-right.svg",
+                        "index": 5,
+                        "text": "SW"
+                      },
+                      "to": 247.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 247.6,
+                      "result": {
+                        "color": "green",
+                        "icon": "img/icons/unicons/arrow-right.svg",
+                        "index": 6,
+                        "text": "W"
+                      },
+                      "to": 292.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 292.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-down-right.svg",
+                        "index": 7,
+                        "text": "NW"
+                      },
+                      "to": 337.5
+                    },
+                    "type": "range"
+                  },
+                  {
+                    "options": {
+                      "from": 337.6,
+                      "result": {
+                        "color": "red",
+                        "icon": "img/icons/unicons/arrow-down.svg",
+                        "index": 8,
+                        "text": "N"
+                      },
+                      "to": 359.9
+                    },
+                    "type": "range"
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
       "gridPos": {
         "h": 8,
-        "w": 6,
+        "w": 12,
         "x": 0,
         "y": 1
       },
@@ -257,7 +278,7 @@
                 "color": {
                   "fixed": "#000000"
                 },
-                "size": 15,
+                "size": 20,
                 "text": {
                   "field": "Geschwindigkeit",
                   "fixed": "",
@@ -274,11 +295,11 @@
               "name": "Geschwindigkeit",
               "oneClickMode": "off",
               "placement": {
-                "height": 26,
-                "left": 119,
+                "height": 45,
+                "left": 197,
                 "rotation": 0,
-                "top": 206,
-                "width": 97
+                "top": 183,
+                "width": 134
               },
               "type": "metric-value"
             },
@@ -299,7 +320,7 @@
               },
               "config": {
                 "rpm": {
-                  "field": "Geschwindigkeit",
+                  "field": "speed QUI",
                   "fixed": 30,
                   "mode": "mod"
                 }
@@ -316,8 +337,8 @@
                 "height": 216,
                 "left": 12,
                 "rotation": 0,
-                "top": 16,
-                "width": 146
+                "top": 6,
+                "width": 156
               },
               "type": "windTurbine"
             },
@@ -326,6 +347,9 @@
                 "color": {
                   "field": "Böe",
                   "fixed": "#D9D9D9"
+                },
+                "image": {
+                  "fixed": ""
                 }
               },
               "border": {
@@ -338,7 +362,7 @@
                 "color": {
                   "fixed": "#000000"
                 },
-                "size": 15,
+                "size": 20,
                 "text": {
                   "field": "Böe",
                   "fixed": "",
@@ -354,11 +378,11 @@
               "name": "Böe",
               "oneClickMode": "off",
               "placement": {
-                "height": 26,
-                "left": 119,
+                "height": 45,
+                "left": 197,
                 "rotation": 0,
-                "top": 177,
-                "width": 97
+                "top": 122,
+                "width": 134
               },
               "type": "metric-value"
             },
@@ -389,6 +413,7 @@
                   "mode": "field"
                 }
               },
+              "connections": [],
               "constraint": {
                 "horizontal": "left",
                 "vertical": "top"
@@ -397,13 +422,132 @@
               "name": "Richtung",
               "oneClickMode": "off",
               "placement": {
-                "height": 58,
-                "left": 160,
+                "height": 90,
+                "left": 237,
                 "rotation": 0,
-                "top": 119,
-                "width": 56
+                "top": 24,
+                "width": 94
               },
               "type": "icon"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "field": "Richtung",
+                  "fixed": "#000000"
+                },
+                "size": 30,
+                "text": {
+                  "field": "Richtung",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Richtung Text",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 71,
+                "left": 197,
+                "rotation": 0,
+                "top": 34,
+                "width": 67
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 9,
+                "text": {
+                  "fixed": "Böe"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Böe Text",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 14,
+                "left": 197,
+                "rotation": 0,
+                "top": 107,
+                "width": 33
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "left",
+                "color": {
+                  "fixed": "rgb(204, 204, 220)"
+                },
+                "size": 9,
+                "text": {
+                  "fixed": "Wind"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "links": [],
+              "name": "Element 7",
+              "oneClickMode": "off",
+              "placement": {
+                "height": 14,
+                "left": 197,
+                "rotation": 0,
+                "top": 169,
+                "width": 33
+              },
+              "type": "text"
             }
           ],
           "name": "Element 1753823583376",
@@ -442,9 +586,18 @@
           "hide": false,
           "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"direction\"\n  )\n  |> rename(fn: (column) => \n    if \"${column}\" == \"_value\" then\n      \"Richtung\"\n    else\n      \"${column}\"\n  )\n  |> drop(columns: [\"_field\", \"_start\", \"_stop\", \"sensor_id\"])\n  ",
           "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
+          },
+          "hide": false,
+          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    r._field == \"speed\"\n  )\n  |> map(fn: (r) => ({r with _value: r._value * 2.0}))",
+          "refId": "D"
         }
       ],
-      "title": "Quinten Windgeschwindigkeit",
+      "title": "Quinten",
       "type": "canvas"
     },
     {
@@ -1487,8 +1640,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1644,8 +1796,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           }
@@ -1736,8 +1887,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1832,8 +1982,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1929,8 +2078,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2025,8 +2173,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2138,8 +2285,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -2249,8 +2395,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2351,8 +2496,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -2462,8 +2606,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2508,6 +2651,7 @@
     }
   ],
   "preload": false,
+  "refresh": "1m",
   "schemaVersion": 40,
   "tags": [],
   "templating": {
@@ -2529,6 +2673,6 @@
   "timezone": "browser",
   "title": "Walensee",
   "uid": "eek0kpuvwm22x",
-  "version": 12,
+  "version": 19,
   "weekStart": ""
 }
