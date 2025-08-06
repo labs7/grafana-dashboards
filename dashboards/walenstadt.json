@@ -218,7 +218,7 @@
                         "index": 8,
                         "text": "N"
                       },
-                      "to": 359.9
+                      "to": 360
                     },
                     "type": "range"
                   }
@@ -1173,6 +1173,88 @@
       },
       "fieldConfig": {
         "defaults": {
+          "fieldMinMax": false
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 28,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto"
+        },
+        "editorMode": "code",
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "return {\n  series: [{\n    type: 'liquidFill',\n    data: context.panel.data.series.map((s) => {\n      const current = s.fields.find((f) => f.name === \"level\").values.at(-1);\n      var level_percentage = Math.abs((current - 418) / 4)\n      return level_percentage\n    }),\n    outline: {\n      show: false\n    },\n    shape: \"container\",\n    label: {\n      formatter: function () {\n        return context.panel.data.series.map((s) => {\n          return s.fields.find((f) => f.name === \"level\").values.at(-1);;\n        });\n      },\n      fontSize: 40,\n    },\n    amplitude: 3,\n    frequency: 1\n  }]\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "name": "default"
+        },
+        "visualEditor": {
+          "code": "return {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [
+            {
+              "name": "level",
+              "source": "A"
+            },
+            {
+              "name": "Time",
+              "source": "A"
+            }
+          ],
+          "series": [
+            {
+              "encode": {
+                "x": [
+                  "A:Time"
+                ],
+                "y": [
+                  "A:level"
+                ]
+              },
+              "id": "level",
+              "name": "",
+              "type": "bar",
+              "uid": "e74c0e8b-ff08-45d8-b72b-fc3ff78ea877"
+            }
+          ]
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "query": "from(bucket: \"walensee\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"murg\" and\n    r._field == \"level\"\n  )",
+          "refId": "A"
+        }
+      ],
+      "title": "Wasserstand",
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
+      },
+      "fieldConfig": {
+        "defaults": {
           "color": {
             "mode": "thresholds"
           },
@@ -1236,9 +1318,9 @@
         ]
       },
       "gridPos": {
-        "h": 4,
-        "w": 24,
-        "x": 0,
+        "h": 5,
+        "w": 12,
+        "x": 12,
         "y": 9
       },
       "id": 2,
@@ -1444,7 +1526,7 @@
         "h": 4,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 14
       },
       "id": 4,
       "options": {
@@ -1521,7 +1603,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 18
       },
       "id": 15,
       "panels": [],
@@ -1541,7 +1623,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 19
       },
       "id": 8,
       "options": {
@@ -1587,7 +1669,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 19
       },
       "id": 9,
       "options": {
@@ -1619,6 +1701,95 @@
       "title": "Wind Walenstadt",
       "transparent": true,
       "type": "operato-windrose-panel"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "2a4a2d63-9729-4abf-afd9-8204cc8a173a"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "id": 30,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto"
+        },
+        "editorMode": "code",
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "// Transform InfluxDB data to ECharts wind format\nconst data = context.panel.data;\nconst series = data.series[0];\n\nif (!series || !series.fields) {\n  return { title: { text: 'No data available' } };\n}\n\n// Find time, speed, and direction fields\nconst timeField = series.fields.find(f => f.name === '_time');\nconst speedField = series.fields.find(f => f.name === 'speed');\nconst directionField = series.fields.find(f => f.name === 'direction');\n\nif (!timeField || !speedField || !directionField) {\n  return { title: { text: 'Missing required fields (speed, direction)' } };\n}\n\n// Create wind data array for ECharts\nconst wind = [];\nfor (let i = 0; i < timeField.values.length; i++) {\n  const time = new Date(timeField.values[i]).toISOString();\n  const speed = speedField.values[i] || 0;\n  const direction = directionField.values[i] || 0;\n\n  wind.push({\n    value: [time, speed],\n    symbolRotate: direction\n  });\n}\n\nreturn {\n  xAxis: {\n    type: 'time',\n    axisLabel: {\n      formatter: function (value) {\n        return new Date(value).toLocaleTimeString('en-GB', {\n          hour: '2-digit',\n          minute: '2-digit',\n          hour12: false\n        });\n      }\n    }\n  },\n  yAxis: {\n    type: 'value',\n    name: '[km/h]',\n    min: 0\n  },\n  series: [\n    {\n      name: 'Wind',\n      data: wind,\n      type: 'line',\n      symbol: 'path://M31 24.7343L21.7917 24.7343V0L9.20826 0L9.20826 24.7343H0L15.5 45L31 24.7343Z',\n      symbolSize: 15,\n      lineStyle: {\n        width: 2,\n        opacity: 0.5\n      },\n      itemStyle: {\n        opacity: 0.8\n      }\n    }\n  ],\n  visualMap: {\n    show: false,\n    min: 0,\n    max: 15,\n    inRange: {\n      color: ['#FD665F', '#FFCE34', '#65B581']\n    }\n  },\n  tooltip: {\n    trigger: 'axis',\n    formatter: function (params) {\n      const data = params[0].data;\n      const time = new Date(data.value[0]).toLocaleString('en-GB', {\n        year: 'numeric',\n        month: '2-digit',\n        day: '2-digit',\n        hour: '2-digit',\n        minute: '2-digit',\n        hour12: false\n      });\n      const speed = data.value[1];\n      const direction = data.symbolRotate;\n      const directionText = getWindDirection(direction);\n\n      return `Zeit: ${time}<br/>Geschwindigkeit: ${speed} km/h<br/>Richtung: ${directionText} (${direction}°)`;\n    }\n  },\n  legend: {\n    show: false\n  },\n  grid: {\n    left: '5%',\n    right: '5%',\n    top: '10%',\n    bottom: '10%'\n  }\n};\n\n// Helper function to convert degrees to cardinal directions\nfunction getWindDirection(degrees) {\n  const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];\n  const index = Math.round(degrees / 22.5) % 16;\n  return directions[index];\n}",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "svg",
+        "themeEditor": {
+          "config": "{}",
+          "name": "default"
+        },
+        "visualEditor": {
+          "code": "return {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [
+            {
+              "name": "speed",
+              "source": "A"
+            },
+            {
+              "name": "Time",
+              "source": "A"
+            },
+            {
+              "name": "Time",
+              "source": "B"
+            },
+            {
+              "name": "direction",
+              "source": "B"
+            }
+          ],
+          "series": [
+            {
+              "encode": {
+                "x": [
+                  "A:Time"
+                ],
+                "y": [
+                  "A:speed"
+                ]
+              },
+              "id": "A",
+              "name": "",
+              "type": "line",
+              "uid": "3b9586cd-ec11-403c-9f9c-ab6b39d29c5d"
+            }
+          ]
+        }
+      },
+      "pluginVersion": "7.0.0",
+      "targets": [
+        {
+          "hide": false,
+          "query": "from(bucket: \"wind-alert\")\n  |> range(start: v.timeRangeStart, stop:v.timeRangeStop)\n  |> filter(fn: (r) =>\n    r._measurement == \"wind\" and\n    (r._field == \"speed\" or r._field == \"direction\")\n  )\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\n  |> drop(columns: [\"_start\", \"_stop\", \"sensor_id\", \"_measurement\"])",
+          "refId": "A"
+        }
+      ],
+      "title": "Quinten",
+      "type": "volkovlabs-echarts-panel"
     },
     {
       "datasource": {
@@ -1710,7 +1881,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 36
       },
       "id": 13,
       "interval": "1h",
@@ -1823,7 +1994,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 26
+        "y": 36
       },
       "id": 16,
       "options": {
@@ -1978,7 +2149,7 @@
         "h": 8,
         "w": 18,
         "x": 0,
-        "y": 34
+        "y": 44
       },
       "id": 17,
       "options": {
@@ -2072,7 +2243,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 34
+        "y": 44
       },
       "id": 18,
       "options": {
@@ -2152,7 +2323,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2168,7 +2340,7 @@
         "h": 8,
         "w": 6,
         "x": 0,
-        "y": 42
+        "y": 52
       },
       "id": 19,
       "options": {
@@ -2247,7 +2419,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2263,7 +2436,7 @@
         "h": 8,
         "w": 6,
         "x": 6,
-        "y": 42
+        "y": 52
       },
       "id": 20,
       "options": {
@@ -2343,7 +2516,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2355,7 +2529,7 @@
         "h": 8,
         "w": 6,
         "x": 12,
-        "y": 42
+        "y": 52
       },
       "id": 21,
       "options": {
@@ -2438,7 +2612,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2450,7 +2625,7 @@
         "h": 8,
         "w": 6,
         "x": 18,
-        "y": 42
+        "y": 52
       },
       "id": 22,
       "options": {
@@ -2485,7 +2660,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 60
       },
       "id": 12,
       "panels": [],
@@ -2550,7 +2725,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "#EAB839",
@@ -2570,7 +2746,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 51
+        "y": 61
       },
       "hideTimeOverride": false,
       "id": 10,
@@ -2660,7 +2836,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2672,7 +2849,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 51
+        "y": 61
       },
       "id": 11,
       "interval": "30m",
@@ -2781,7 +2958,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 59
+        "y": 69
       },
       "hideTimeOverride": false,
       "id": 23,
@@ -2883,7 +3060,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 59
+        "y": 69
       },
       "id": 24,
       "interval": "12h",
@@ -2938,6 +3115,6 @@
   "timezone": "browser",
   "title": "Walensee",
   "uid": "eek0kpuvwm22x",
-  "version": 20,
+  "version": 21,
   "weekStart": ""
 }
